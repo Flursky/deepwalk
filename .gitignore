@@ -8,7 +8,6 @@
 *.orig
 *.log
 *.pot
-__pycache__/*
 .cache/*
 .*.swp
 */.ipynb_checkpoints/*
@@ -59,3 +58,6 @@ MANIFEST
 
 ### testing data ###
 data/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
