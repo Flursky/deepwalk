@@ -48,3 +48,14 @@ MANIFEST
 
 # Per-project virtualenvs
 .venv*/
+
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### testing data ###
+data/
