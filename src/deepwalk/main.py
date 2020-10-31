@@ -62,7 +62,8 @@ def parse_args(args):
     parser.add_argument(
         "--edge-list",
         help="Edge file for constructing the graph",
-        type=str
+        type=str,
+        required=True
     )
     parser.add_argument(
         "--oriented",
@@ -74,14 +75,16 @@ def parse_args(args):
         "--num-walk",
         help="Number of walks per node",
         type=int,
+        required=True
     )
     parser.add_argument(
         "--walk-length",
         help="Walk length",
-        type=int
+        type=int,
+        required=True
     )
     parser.add_argument(
-        "window-size",
+        "--window-size",
         help="Skip-Gram parameter (default = 5)",
         type=int,
         default=5
