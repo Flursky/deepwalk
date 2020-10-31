@@ -23,8 +23,8 @@ class Walker(object):
         walks = []
 
         for _ in range(self.num_walks):
-            nodes = self.G.nodes()
-            # random.shuffle(nodes)
+            nodes = list(self.G.nodes())
+            random.shuffle(nodes)
 
             for node in nodes:
                 walks.append(self._walk(node))
