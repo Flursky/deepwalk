@@ -28,12 +28,19 @@ tags
 *.egg-info
 
 # Unittest and coverage
-htmlcov/*
+htmlcov/
+.tox/
+.nox/
 .coverage
-.tox
-junit.xml
+.coverage.*
+.cache
+nosetests.xml
 coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
 .pytest_cache/
+pytestdebug.log
 
 # Build and docs folder/files
 build/*
