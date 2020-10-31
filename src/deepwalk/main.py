@@ -20,6 +20,8 @@ import sys
 import logging
 
 from deepwalk import __version__
+from deepwalk.train import train, save_model
+
 
 __author__ = "Flursky"
 __copyright__ = "Flursky"
@@ -27,21 +29,6 @@ __license__ = "mit"
 
 _logger = logging.getLogger(__name__)
 
-
-def fib(n):
-    """Fibonacci example function
-
-    Args:
-      n (int): integer
-
-    Returns:
-      int: n-th Fibonacci number
-    """
-    assert n > 0
-    a, b = 1, 1
-    for i in range(n-1):
-        a, b = b, a+b
-    return a
 
 
 def parse_args(args):
@@ -72,7 +59,7 @@ def parse_args(args):
         default=False
     )
     parser.add_argument(
-        "--num-walk",
+        "--num-walks",
         help="Number of walks per node",
         type=int,
         required=True
@@ -101,7 +88,12 @@ def parse_args(args):
         type=int,
         default=1
     )
-
+    parser.add_argument(
+        "--output",
+        help="Where to store embeddings",
+        type=str,
+        required=True
+    )
     parser.add_argument(
         "--epochs",
         help="Number of training epochs (default = 10)",
@@ -143,14 +135,25 @@ def main(args):
       args ([str]): command line parameter list
     """
     args = parse_args(args)
-    setup_logging(args.loglevel)
-    _logger.debug("Starting crazy calculations...")
-    print("The {}-th Fibonacci number is {}".format(args.n, fib(args.n)))
-    _logger.info("Script ends here")
 
+    edge_file = args.edge_list
+    oriented = args.oriented
+    num_walks = args.num_walks
+    walk_length = args.walk_length
+    window_size = args.window_size
+    embed_size = args.embed_size
+    workers = args.workers
+    epochs = args.epochs
+    output = args.output
+
+    setup_logging(args.loglevel)
+    
+    model = train(edge_file, oriented, num_walks, walk_length, epochs, embed_size, window_size, workers)
+    
+    save_model(model, output)
 
 def run():
-    """Entry point for console_scripts
+    """
     """
     main(sys.argv[1:])
 

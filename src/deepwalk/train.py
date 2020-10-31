@@ -27,3 +27,7 @@ def train(edge_file: str, is_oriented: bool, num_walks: int, walk_length: int, e
     dw_model = train_deepwalk(G, num_walks, walk_length, epochs, embed_size, window_size, workers)
     
     return dw_model
+
+def save_model(model: DeepWalk, file):
+    w2v_model = model.w2v
+    w2v_model.wv.save_word2vec_format(file)
