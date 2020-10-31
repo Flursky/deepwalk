@@ -7,6 +7,10 @@ from deepwalk.model import Walker
 from deepwalk.model import DeepWalk
 
 
+__author__ = "Flursky"
+__copyright__ = "Flursky"
+__license__ = "mit"
+
 def test_walker():
     g = build_graph(r"C:\Users\khairi\Workspace\deepwalk\data\g1-edges.txt", is_oriented=False)
     walker = Walker(g, 3, 2)
