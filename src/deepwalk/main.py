@@ -54,16 +54,57 @@ def parse_args(args):
       :obj:`argparse.Namespace`: command line parameters namespace
     """
     parser = argparse.ArgumentParser(
-        description="Just a Fibonacci demonstration")
+        description="Training a DeepWalk model")
     parser.add_argument(
         "--version",
         action="version",
         version="deepwalk {ver}".format(ver=__version__))
     parser.add_argument(
-        dest="n",
-        help="n-th Fibonacci number",
+        "--edge-list",
+        help="Edge file for constructing the graph",
+        type=str
+    )
+    parser.add_argument(
+        "--oriented",
+        help="If the graph is oriented or not",
+        type=bool,
+        default=False
+    )
+    parser.add_argument(
+        "--num-walk",
+        help="Number of walks per node",
         type=int,
-        metavar="INT")
+    )
+    parser.add_argument(
+        "--walk-length",
+        help="Walk length",
+        type=int
+    )
+    parser.add_argument(
+        "window-size",
+        help="Skip-Gram parameter (default = 5)",
+        type=int,
+        default=5
+    )
+    parser.add_argument(
+        "--embed-size",
+        help="Output vector size (default = 128)",
+        type=int,
+        default=128
+    )
+    parser.add_argument(
+        "--workers",
+        help="Word2Vec parameter: number of workers used (default = 1)",
+        type=int,
+        default=1
+    )
+
+    parser.add_argument(
+        "--epochs",
+        help="Number of training epochs (default = 10)",
+        type=int,
+        default=10
+    )
     parser.add_argument(
         "-v",
         "--verbose",
