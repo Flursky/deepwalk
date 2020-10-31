@@ -49,12 +49,42 @@ class Walker(object):
 
 class DeepWalk(object):
 
-    def __init__(self, g: nx.Graph, num_walks, walk_length, window_size=5):
+    def __init__(self, g: nx.Graph, num_walks, walk_length):
         """
         """
-        self.embeddings = {}
+        self.g = g
         self.walker = Walker(g, num_walks, walk_length)
+        
+        self.walks = None
+        self.w2v = None
+        self._embeddings = None
 
-    
-    def fit(self, g):
-        pass
+    def fit(self, embed_size=128, window_size=5, workers=1, iters=10, **kwargs):
+        self.walks = self.walker.simulate_walks()
+
+        ### Word2Vec params ###
+        kwargs['sentences'] = self.walks
+        kwargs['hs'] = 1
+        kwargs['sg'] = 1
+        kwargs['size'] = embed_size
+        kwargs['window'] = window_size
+        kwargs['workers'] = workers
+        kwargs['iter'] = iters
+
+        model = Word2Vec(**kwargs)
+
+        self.w2v = model
+
+        return model
+
+
+    def embeddings(self):
+        if self.w2v is None:
+            raise ValueError('Model Not trained')
+
+        if self._embeddings is None:
+            embeddings = {}
+            for node in list(self.g.nodes()):
+                embeddings[node] = self.w2v.wv[str(node)]
+            self._embeddings = embeddings
+        return self._embeddings

@@ -10,11 +10,11 @@ __license__ = "mit"
 def test_build_graph():
     g = build_graph(r"C:\Users\khairi\Workspace\deepwalk\data\g1-edges.txt", is_oriented=True)
     assert type(g) == nx.DiGraph
-    assert len(g.edges()) == 17
+    assert len(g.edges()) == 19
     assert len(g.nodes()) == 8
 
     g = build_graph(r"C:\Users\khairi\Workspace\deepwalk\data\g1-edges.txt", is_oriented=False)
     assert type(g) == nx.Graph
-    assert len(g.edges()) == 14
+    assert len(g.edges()) == 16
     assert len(g.nodes()) == 8
     
