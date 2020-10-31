@@ -3,7 +3,7 @@ DeepWalk
 ========
 
 
-Add a short description here!
+# TODO: write the docs
 
 
 Description
