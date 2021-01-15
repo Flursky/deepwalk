@@ -20,7 +20,7 @@ information on PyScaffold see https://pyscaffold.org/.
 
 References
 ====
-```
+```latex
 @article{Perozzi_2014,
    title={DeepWalk},
    ISBN={9781450329569},
@@ -31,5 +31,5 @@ References
    author={Perozzi, Bryan and Al-Rfou, Rami and Skiena, Steven},
    year={2014},
    month={Aug}
-}
+   }
 ```
